@@ -48,7 +48,7 @@ async function bootstrap() {
   schedulerRegistry.addCronJob('myCronJob', job);
   job.start();
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 
 bootstrap();
