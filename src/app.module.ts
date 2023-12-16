@@ -3,10 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RapidAPIModule } from './rapidapi/rapidapi.module';
 import { OpenAIModule } from './openai/openai.module';
-import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
-  imports: [RapidAPIModule, OpenAIModule, ScheduleModule.forRoot()],
+  imports: [RapidAPIModule, OpenAIModule],
   controllers: [AppController],
   providers: [AppService],
 })
