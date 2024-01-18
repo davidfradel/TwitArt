@@ -6,18 +6,27 @@ import { AyrshareService } from './ayrshare/ayrshare.service';
 
 interface Trends {
   name: string;
+  domainContext: string;
 }
 
 async function bootstrap() {
   const appContext = await NestFactory.createApplicationContext(AppModule);
   const rapidAPIService = appContext.get(RapidAPIService);
   const currentDate = new Date().toDateString();
+  const ignoreList = ['Football'];
 
   try {
     // First we get the trending data from RapidAPI
     const objectOfTrends = await rapidAPIService.getTrendingData();
     const trends: Trends[] = Object.values(objectOfTrends.trends);
-    const arrayOfTrends = trends.map((value) => value.name);
+    const arrayOfTrends = trends
+      .filter(
+        (value) =>
+          value.domainContext &&
+          value.domainContext.length > 0 &&
+          !ignoreList.includes(value.domainContext),
+      )
+      .map((value) => value.name);
 
     // Then we use the trending data to generate a prompt for OpenAI
     const openAIService = new OpenAIService();

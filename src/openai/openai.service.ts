@@ -17,7 +17,8 @@ export class OpenAIService {
       messages: [
         {
           role: 'user',
-          content: `Create a prompt for an image related to the following array: ${data}`,
+          content: `Create a prompt for an image linked to the following table, ignoring anything related to sport and more particularly football. I would like you to choose names from the table that have things in common to create a unique work and not lots of small images in a large image.
+You have the choice to make an arbitrary choice by taking a theme from the list and creating a work from it as if you were a surrealist painter and you were going to be exhibited at the Georges Pompidou Museum of Modern Art in Paris. Surprise us by imagining what modern art will be like in a century! : ${data}`,
         },
       ],
       model: 'gpt-4-1106-preview',
